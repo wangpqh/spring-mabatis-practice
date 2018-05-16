@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -27,7 +26,7 @@
 
                 <div class="card-header">
                     <nav class="navbar navbar-expand-lg bg-info " style="text-align: center">
-                        <div class="container-fluid  " >
+                        <div class="container-fluid  ">
                             <p class="text-white">Welcome to this system!<br>请登陆。。。</p>
                         </div>
                     </nav>
