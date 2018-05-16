@@ -1,0 +1,47 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_5.xsd"
+         version="2.4">
+    <!-- 配置springmvc的前端控制器 -->
+    <!-- 默认情况下：DispatcherServlet会寻找WEB-INF下，命名规范为[servlet-name]-servlet.xml文件。
+ 它就会找/WEB-INF/springtest-servlet.xml
+   如果需要修改，需要在web.xml中的<servlet>标记中增加 <init-param>。。。  </init-param>：-->
+    <servlet>
+        <servlet-name>springtest</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/springtest-servlet.xml</param-value>
+        </init-param>
+    </servlet>
+    <!--init-param中的指定了springmvc的dispatcherServlet的配置文件：springtest-servlet.xml-->
+    <!--所有springmvc相关的都在该文件中进行配置。在DispatcherServlet(其父类)中使用：-->
+    <!--getServletConfig().getInitParameter("paramName");  可以访问到init-param中指定的参数，-->
+    <!--从而可以读取到springtest-servlet.xml文件。-->
+    <!--load-on-startup值为1指定了dispatcherServlet随servlet容器启动。-->
+    <servlet-mapping>
+        <servlet-name>springtest</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- 告知javaEE容器，有哪些内容需要添加到上下文中去 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>applicationContext.xml</param-value>
+    </context-param>
+
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+
+</web-app>
