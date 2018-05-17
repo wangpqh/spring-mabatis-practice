@@ -6,6 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
+
+
 @Controller
 @RequestMapping("/demo")
 public class DeController {
@@ -14,8 +17,10 @@ public class DeController {
 
     @RequestMapping("/index")
     @ResponseBody
-    public String index() {
+    public String index() throws IOException {
+
         return mapper.searchInfo(2).toString();
+
     }
 
 }
