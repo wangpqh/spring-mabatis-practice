@@ -2,9 +2,9 @@ package com.springdemo.pojo;
 
 public class User {
     int id;
-    String Name;
+    String name;
     String password;
-    String Mail;
+    String mail;
 
     public int getId() {
         return id;
@@ -15,11 +15,11 @@ public class User {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getPassword() {
@@ -31,20 +31,20 @@ public class User {
     }
 
     public String getMail() {
-        return Mail;
+        return mail;
     }
 
     public void setMail(String mail) {
-        Mail = mail;
+        this.mail = mail;
     }
 
     @Override
     public String toString() {
         return "{" +
                 "id=" + id +
-                ", Name='" + Name + '\'' +
+                ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
-                ", Mail='" + Mail + '\'' +
+                ", mail='" + mail + '\'' +
                 '}';
     }
 }

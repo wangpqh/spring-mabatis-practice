@@ -1,28 +1,39 @@
-<!--<?xml version="1.0" encoding="utf-8" ?>-->
-<!--<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">-->
-<!--&lt;!&ndash;-->
-<!--namespace：必须与对应的接口全类名一致  UserDaoMapper.java-->
-<!--id ：必须与对应接口的某个对应的方法名一致即必须要和UserDao.java接口中的方法同名。-->
-<!--&ndash;&gt;-->
-<!--<mapper namespace="com.springdemo.dao.UserDaoMapper">-->
-<!--&lt;!&ndash;接口中的增删改查sql语句&ndash;&gt;-->
-<!--&lt;!&ndash;<select id="searchIdNum">&ndash;&gt;-->
-<!--&lt;!&ndash;select Id from userInfo&ndash;&gt;-->
-<!--&lt;!&ndash;</select>&ndash;&gt;-->
-<!--&lt;!&ndash;此处User即时mybatis-config.xml中的typeAliases&ndash;&gt;-->
-<!--<select id="searchInfo" parameterType="int" resultType="User">-->
-<!--select Id,userName,password,mailBox from userInfo where Id=#{userId}-->
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+namespace：必须与对应的接口全类名一致  UserDaoMapper.java
+id ：必须与对应接口的某个对应的方法名一致即必须要和UserDao.java接口中的方法同名。
+-->
+<mapper namespace="com.springdemo.dao.UserDaoMapper">
+    <!--property： 映射数据库列的字段或属性，如果JavaBean的属性与给定的名称匹配，就会使用匹配的名字,-->
+    <!--否则MyBatis将搜索给定名称的字段，两种情况下你都可以使用逗点的属性形式，-->
+    <!--比如，你可以映射到“”username：，也可以映射到“address.street.number”-->
+    <!--column:数据库的列名或者列标签别名，与传递个resultSet.getString(columnName)的参数名称相同。-->
+
+    <resultMap type="User" id="UserRM">
+        <id column="Id" property="id"/>
+        <result column="userName" property="name"/>
+        <result column="password" property="password"/>
+        <result column="mailBox" property="mail"/>
+    </resultMap>
+    <!--接口中的增删改查sql语句-->
+    <!--<select id="searchIdNum">-->
+    <!--select Id from userInfo-->
 <!--</select>-->
-<!--&lt;!&ndash;<select id="queryAll" resultType="User">&ndash;&gt;-->
-<!--&lt;!&ndash;select * from userInfo&ndash;&gt;-->
-<!--&lt;!&ndash;</select>&ndash;&gt;-->
-<!--&lt;!&ndash;<insert id="insertInfo" >&ndash;&gt;-->
-<!--&lt;!&ndash;insert into userInfo(Id,userName,password,mailBox) values (#{userId},#{userName},#{password},#{mail})&ndash;&gt;-->
-<!--&lt;!&ndash;</insert>&ndash;&gt;-->
-<!--&lt;!&ndash;<delete id="deleteInfo" parameterType="int">&ndash;&gt;-->
-<!--&lt;!&ndash;delete from userInfo where Id=#{userId}&ndash;&gt;-->
-<!--&lt;!&ndash;</delete>&ndash;&gt;-->
-<!--&lt;!&ndash;<update id="updateInfo">&ndash;&gt;-->
-<!--&lt;!&ndash;update userInfo set userName=#{userName}, password=#{password} ,mailBox=#{mail} where Id=#{userId}&ndash;&gt;-->
-<!--&lt;!&ndash;</update>&ndash;&gt;-->
-<!--</mapper>-->
+    <!--此处User即时mybatis-config.xml中的typeAliases-->
+    <select id="searchInfo" parameterType="int" resultMap="UserRM">
+select Id,userName,password,mailBox from userInfo where Id=#{userId}
+</select>
+    <!--<select id="queryAll" resultType="User">-->
+    <!--select * from userInfo-->
+    <!--</select>-->
+    <!--<insert id="insertInfo" >-->
+    <!--insert into userInfo(Id,userName,password,mailBox) values (#{userId},#{userName},#{password},#{mail})-->
+    <!--</insert>-->
+    <!--<delete id="deleteInfo" parameterType="int">-->
+    <!--delete from userInfo where Id=#{userId}-->
+    <!--</delete>-->
+    <!--<update id="updateInfo">-->
+    <!--update userInfo set userName=#{userName}, password=#{password} ,mailBox=#{mail} where Id=#{userId}-->
+    <!--</update>-->
+</mapper>
